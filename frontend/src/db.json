@@ -1,0 +1,73 @@
+{
+	"users": [
+		{
+			"id": "001",
+			"login": "Stasya",
+			"password": "qwer3333",
+			"registered_at": "2021-09-01",
+			"role_id": ""
+		}
+	],
+	"roles": [
+		{
+			"id": 0,
+			"name": "Администратор"
+		},
+		{
+			"id": 1,
+			"name": "Модератор"
+		},
+		{
+			"id": 2,
+			"name": "Покупатель"
+		},
+		{
+			"id": 3,
+			"name": "Гость"
+		}
+	],
+
+	"filterPanelTypelist": [
+		{
+			"id": "age",
+			"name": "Возрастная категория",
+			"checkList": [
+				{ "checkId": 0, "name": "до 30" },
+				{ "checkId": 1, "name": "от 30 до 40" },
+				{ "checkId": 2, "name": "больще 40" }
+			],
+			"forCategory": ["mask", "cream", "tonic&lotion", "cream_body", "scrub"]
+		},
+		{
+			"id": "brand",
+			"name": "Бренд",
+			"checkList": [
+				{ "checkId": "Payot", "name": "PAYOT" },
+				{ "checkId": "CLINIQUE", "name": "CLINIQUE" },
+				{ "checkId": "CLARINS", "name": "CLARINS" }
+			],
+			"forCategory": [
+				"mask",
+				"cream",
+				"tonic&lotion",
+				"cream_body",
+				"scrub",
+				"shampoo",
+				"balsam",
+				"deodorantMan",
+				"shampooMan"
+			]
+		},
+		{
+			"id": "hairType",
+			"name": "Тип волос",
+			"checkList": [
+				{ "checkId": 0, "name": "сухие" },
+				{ "checkId": 1, "name": "жирные" },
+				{ "checkId": 2, "name": "нормальные" },
+				{ "checkId": 3, "name": "окрашенные" }
+			],
+			"forCategory": ["shampoo", "balsam"]
+		}
+	]
+}

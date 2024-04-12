@@ -1,0 +1,27 @@
+.controlPanel {
+	width: 380px;
+	color: var(--main-color);
+	display: flex;
+	flex-direction: row;
+	align-self: center;
+	align-items: end;
+	justify-content: end;
+}
+.icon_wrapper {
+	width: 40px;
+	height: 40px;
+	font-size: 24px;
+	display: flex;
+	justify-content: center;
+	align-items: end;
+	color: var(--main-color);
+}
+.button_wrapper {
+	/* width: 80px; */
+	display: flex;
+	justify-content: center;
+	align-items: end;
+}
+.cost {
+	color: var(--text-color);
+}

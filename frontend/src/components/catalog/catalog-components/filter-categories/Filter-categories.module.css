@@ -1,0 +1,16 @@
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 40px;
+}
+
+.form:not(:last-child) {
+	margin-bottom: 10px;
+}
+.title {
+	font-size: 20px;
+	margin-bottom: 18px;
+}
+.input {
+	margin-right: 5px;
+}

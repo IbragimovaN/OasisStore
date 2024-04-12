@@ -1,0 +1,23 @@
+.products {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	max-width: 900px;
+	margin: 0 auto;
+	padding-top: 80px;
+	justify-content: space-between;
+}
+.narrow {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	max-width: 900px;
+	padding-top: 80px;
+	justify-content: space-between;
+}
+
+.btn {
+	position: absolute;
+	border: 3px solid rebeccapurple;
+	z-index: 1000;
+}

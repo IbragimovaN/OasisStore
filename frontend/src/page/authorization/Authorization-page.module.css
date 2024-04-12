@@ -1,0 +1,33 @@
+.authorization {
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: calc(97vh - 160px);
+}
+.wrapper {
+	width: 800px;
+	height: 400px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	background-color: #e4f0f1;
+	padding: 50px;
+}
+.form {
+	width: 300px;
+	height: 170px;
+	justify-content: space-between;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.title {
+	margin-bottom: 30px;
+}
+
+.error {
+	font-size: 14px;
+	color: red;
+}

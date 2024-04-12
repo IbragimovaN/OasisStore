@@ -1,0 +1,17 @@
+.paginations {
+	display: flex;
+	justify-content: space-between;
+	margin: 10px auto;
+	width: 500px;
+	font-size: 14px;
+}
+.currentPage {
+	display: flex;
+	justify-content: center;
+	width: 90px;
+	height: 32pxpx;
+	font-size: 14px;
+	font-weight: 500;
+	align-items: center;
+	border: 1px solid black;
+}

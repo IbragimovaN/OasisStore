@@ -1,0 +1,14 @@
+.filterPanel {
+	display: flex;
+	flex-direction: column;
+	padding: 30px;
+
+	width: 325px;
+	background-color: #f3f7f6;
+	height: calc(100vh - 60px);
+	position: fixed;
+	top: 181px;
+
+	right: calc((100vw - 1252px) / 2);
+	z-index: 200;
+}

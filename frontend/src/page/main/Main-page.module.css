@@ -1,0 +1,47 @@
+.main {
+	box-sizing: border-box;
+	height: calc(100vh - 160px);
+	overflow: hidden;
+}
+.wrapper {
+	display: block;
+	height: 100%;
+
+	width: 100%;
+	background-image: url("../../image/main-bg.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.container {
+	width: 1240px;
+	border-top: 1px solid transparent;
+	margin: 0 auto;
+	position: relative;
+}
+.title {
+	color: var(--text-color);
+	font-size: 85px;
+	letter-spacing: 2%;
+	margin-top: 150px;
+	position: relative;
+}
+.title span {
+	font-family: "Italianno";
+	font-weight: normal;
+	font-size: 85px;
+	letter-spacing: 2%;
+	position: absolute;
+	bottom: -70px;
+	left: 0;
+}
+.text {
+	color: var(--main-color);
+	margin-top: 70px;
+	width: 400px;
+}
+
+@media (min-width: 1280px) {
+	.wrapper {
+		background-position: 0 -60px;
+	}
+}

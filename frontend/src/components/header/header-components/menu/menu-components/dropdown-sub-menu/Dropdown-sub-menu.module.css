@@ -1,0 +1,13 @@
+.wrapper {
+	width: 150px;
+	height: 180px;
+	box-shadow: 1px 1px 19px 7px rgba(99, 104, 106, 0.75);
+	background-color: #fff;
+	color: var(--text-color-light);
+	margin-top: 18px;
+}
+.item {
+	color: var(--text-color-light);
+	z-index: 51;
+	cursor: pointer;
+}

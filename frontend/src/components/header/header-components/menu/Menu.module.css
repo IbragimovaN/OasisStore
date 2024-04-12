@@ -1,0 +1,14 @@
+.menu {
+	color: var(--main-color);
+	width: 660px;
+	align-self: start;
+}
+.list {
+	width: 100%;
+	display: grid;
+	grid-template: 1fr / repeat(5, 150px);
+	gap: 20px;
+	align-items: start;
+	margin: 0;
+	padding: 0;
+}
