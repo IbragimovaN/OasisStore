@@ -3,7 +3,7 @@
 	width: 230px;
 	border: 1px solid rgb(183, 193, 195);
 	display: grid;
-	grid-template: 170px 90px 30px 1fr/1fr;
+	grid-template: 3fr 1fr/1fr;
 	padding: 5px;
 	justify-items: center;
 	background-color: #fff;
@@ -16,4 +16,10 @@
 }
 .title {
 	text-align: center;
+}
+
+.link_wrapper {
+	display: grid;
+	grid-template: 170px 90px 30px/1fr;
+	justify-items: center;
 }

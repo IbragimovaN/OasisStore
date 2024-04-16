@@ -1,0 +1,23 @@
+.image {
+	max-height: 75px;
+	max-width: 90px;
+	margin: 0 auto;
+}
+.image_cell {
+	text-align: center;
+}
+/* .input {
+	width: 100%;
+} */
+.textarea {
+	width: 100%;
+}
+.btn_cell {
+	border: none;
+}
+.btn_delete {
+	color: red;
+}
+.btn_save {
+	color: rgb(5, 209, 42);
+}

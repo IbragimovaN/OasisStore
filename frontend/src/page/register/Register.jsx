@@ -1,19 +1,17 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { Button, Container, Input } from "../../components";
+import { useState } from "react";
+import { Input, Button, Container } from "../../components";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Authorization-page.module.css";
-import {
-	loginAsync,
-	setUserAsync,
-} from "../../redux/actions/async-actions/login-async";
-import { errorServerSelector, userSelector } from "../../redux";
-import { authFormSchema } from "./vallidate/auth-form-schema";
+import styles from "./Register.module.css";
+import { regFromSchema } from "./validate/reg-form-schema";
+import { setUserAsync } from "../../redux/actions/async-actions/login-async";
+import { errorServerSelector } from "../../redux";
 import { setServerErrorAction } from "../../redux/actions/set-server-error-action";
+import { registerAsync } from "../../redux/actions/async-actions/register-async";
 
-export const Authorization = () => {
+export const Register = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const serverError = useSelector(errorServerSelector);
@@ -26,24 +24,29 @@ export const Authorization = () => {
 		defaultValues: {
 			login: "",
 			password: "",
+			passcheck: "",
 		},
-		resolver: yupResolver(authFormSchema),
+		resolver: yupResolver(regFromSchema),
 	});
 
 	const onSubmit = ({ login, password }) => {
-		dispatch(loginAsync(login, password)).then((roleId) => {
-			roleId === 0 ? navigate("/adminPage") : navigate("/");
+		dispatch(registerAsync(login, password)).then(() => {
+			navigate("/");
 		});
 	};
 
-	const formError = errors?.login?.message || errors?.password?.message;
+	const formError =
+		errors?.login?.message ||
+		errors?.password?.message ||
+		errors?.passcheck?.message;
+
 	const errorMessage = formError || serverError;
 
 	return (
 		<Container>
 			<div className={styles.authorization}>
 				<div className={styles.wrapper}>
-					<h2 className={styles.title}>Авторизация</h2>
+					<h2 className={styles.title}>Регистрация</h2>
 					<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 						<Input
 							type="text"
@@ -53,15 +56,24 @@ export const Authorization = () => {
 							})}
 						/>
 						<Input
-							type="text"
-							placeholder={"пароль"}
+							type="password"
+							placeholder="Пароль"
 							{...register("password", {
 								onChange: () => dispatch(setServerErrorAction(null)),
 							})}
 						/>
-						<Button type="submit">Войти</Button>
+						<Input
+							type="password"
+							placeholder="Повтор пароля"
+							{...register("passcheck", {
+								onChange: () => dispatch(setServerErrorAction(null)),
+							})}
+						/>
+						<Button type="submit" disabled={!!formError}>
+							Зарегестироваться
+						</Button>
+
 						{errorMessage && <div className={styles.error}>{errorMessage}</div>}
-						<Link to="/register">Регистрация</Link>
 					</form>
 				</div>
 			</div>

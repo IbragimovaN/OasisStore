@@ -1,9 +1,8 @@
-import { getAllProducts } from "../../bff/api";
-import { setProductsAction } from "./set-products-action";
-import { request } from "../../utils.js/request";
-import { setLastPageAction } from "./set-last-page-action";
+import { setProductsAction } from "../set-products-action";
+import { request } from "../../../utils.js/request";
+import { setLastPageAction } from "../set-last-page-action";
 
-export const setProductsAsync =
+export const getProductsAsync =
 	(idCategory, searchPhrase, page, limit) => (dispatch) => {
 		return request(
 			idCategory

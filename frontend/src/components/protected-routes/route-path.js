@@ -1,4 +1,10 @@
-import { AdminPage, Authorization, MainPage } from "../../page";
+import {
+	AdminPage,
+	Authorization,
+	MainPage,
+	ProductPage,
+	Register,
+} from "../../page";
 import { CatalogWithAllProducts } from "../../page/catalog-with-all-products/CatalogWithAllProducts";
 import { CatalogWithProductsCategory } from "../../page/catalog-with-products-category/CatalogWithProductsCategory";
 
@@ -16,8 +22,20 @@ export const routesPath = [
 		element: <CatalogWithProductsCategory />,
 	},
 	{
+		path: "/catalog/:idCategory/:productId",
+		element: <ProductPage />,
+	},
+	{
+		path: "/catalog/allProducts/:productId",
+		element: <ProductPage />,
+	},
+	{
 		path: "/login",
 		element: <Authorization />,
+	},
+	{
+		path: "/register",
+		element: <Register />,
 	},
 	{
 		path: "/adminPage",

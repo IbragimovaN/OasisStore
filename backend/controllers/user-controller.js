@@ -12,7 +12,9 @@ async function register(login, password) {
 
   const user = await User.create({ login, password: passwordHash });
 
-  return user;
+  const token = generateToken({ id: user.id });
+
+  return { user, token };
 }
 
 async function login(login, password) {

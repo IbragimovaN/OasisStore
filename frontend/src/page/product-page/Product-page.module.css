@@ -1,0 +1,53 @@
+.image {
+	max-height: 400px;
+	max-width: 400px;
+}
+
+.wrapper {
+	display: flex;
+	padding: 30px;
+	gap: 30px;
+}
+
+.price_wrapper {
+	width: 200px;
+	height: 130px;
+	box-shadow: 3px -1px 20px 0px rgba(25, 22, 22, 0.75);
+	margin-top: 35px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+
+.price {
+	font-size: 20px;
+}
+.property_title {
+	color: #60b7bc;
+	font-size: 18px;
+}
+.properties {
+	display: flex;
+	gap: 10px;
+	align-items: end;
+}
+
+.properties_desc {
+	display: flex;
+	gap: 10px;
+	align-items: start;
+}
+
+.title {
+	font-size: 22px;
+}
+
+.coll {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding-top: 25px;
+	max-width: 550px;
+}

@@ -1,0 +1,9 @@
+.cell {
+	max-width: 300px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: wrap;
+}
+.cell_desc {
+	min-width: 400px;
+}

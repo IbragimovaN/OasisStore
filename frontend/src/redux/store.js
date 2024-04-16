@@ -5,6 +5,8 @@ import {
 	productsReducer,
 	catalogReducer,
 	searchReducer,
+	errorReducer,
+	modalReducer,
 } from "./reducers";
 
 const reducer = combineReducers({
@@ -12,6 +14,8 @@ const reducer = combineReducers({
 	productsState: productsReducer,
 	catalogState: catalogReducer,
 	searchState: searchReducer,
+	errorState: errorReducer,
+	modalState: modalReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

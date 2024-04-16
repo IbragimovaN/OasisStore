@@ -31,7 +31,7 @@ export const Search = () => {
 			<Input
 				type="text"
 				placeholder="поиск..."
-				onChange={onChangeInput}
+				onChange={({ target }) => onChangeInput(target.value)}
 				value={searchPhrase}
 			></Input>
 

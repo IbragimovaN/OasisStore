@@ -1,20 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-
-import { Button } from "../../../button/Button";
-
 import styles from "./Control-panel.module.css";
 import { userSelector } from "../../../../redux";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutAsync } from "../../../../redux/actions/async-actions/logout-async";
-import { useState } from "react";
 import { setUserAction } from "../../../../redux/actions/set-user-action";
 
 export const ControlPanel = () => {
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const user = useSelector(userSelector);
-
-	console.log(user);
 
 	const onClickLogout = () => {
 		dispatch(logoutAsync());
@@ -25,13 +18,15 @@ export const ControlPanel = () => {
 	return (
 		<div className={styles.controlPanel}>
 			<div className={styles.button_wrapper}>
-				{user !== undefined ? (
-					<div className={styles.button_wrapper}>
-						<Button onClick={onClickLogout}>Выход</Button>
-						<div className={styles.icon_wrapper}>
-							<i className={`fa fa-sign-out`} aria-hidden="true"></i>
+				{user ? (
+					<>
+						<div className={styles.button_wrapper}>
+							<button onClick={onClickLogout}>Выход</button>
+							<div className={styles.icon_wrapper}>
+								<i className={`fa fa-sign-out`} aria-hidden="true"></i>
+							</div>
 						</div>
-					</div>
+					</>
 				) : (
 					<Link to="/login">
 						<div className={styles.button_wrapper}>

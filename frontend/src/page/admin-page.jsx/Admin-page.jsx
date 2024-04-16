@@ -1,115 +1,77 @@
 import { useEffect, useState } from "react";
-import { Container } from "../../components";
+import { Button, Container, Search } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Admin-page.module.css";
 import {
 	productsSelector,
 	searchPhraseSelector,
 	setIsLoading,
-	setProductsAsync,
+	getProductsAsync,
 	shouldSearchSelector,
+	isUpdatedProductsSelector,
+	setIsUpdatedProducts,
 } from "../../redux";
 import { PAGINATION_LIMIT } from "../../constants/paginations-limit";
 import { Pagination } from "../../components/catalog/catalog-components/paginations/paginations";
+import { TableRow } from "./components/Table-row/Table-row";
+import { Modal } from "../../components/modal/Modal";
+import { request } from "../../utils.js/request";
+import { Sorting } from "../../components/sorting/Sorting";
 
 export const AdminPage = () => {
 	const dispatch = useDispatch();
 	const searchPhrase = useSelector(searchPhraseSelector);
 	const shouldSearch = useSelector(shouldSearchSelector);
 	const products = useSelector(productsSelector);
+	const isUpdatingProducts = useSelector(isUpdatedProductsSelector);
 	const [page, setPage] = useState(1);
 
 	useEffect(() => {
 		dispatch(
-			setProductsAsync(null, searchPhrase, page, PAGINATION_LIMIT),
+			getProductsAsync(null, searchPhrase, page, PAGINATION_LIMIT),
 		).finally(() => dispatch(setIsLoading(false)));
-	}, [shouldSearch]);
+	}, [dispatch, shouldSearch, page, isUpdatingProducts]);
 
-	const [editingProduct, setEditingProduct] = useState(null);
-	const handleDeleteProduct = (productId) => {
-		// Добавить обработчик удаления товара
-	};
-
-	const handleProductChange = (productId, fieldName, value) => {
-		// Добавить обработчик изменения значения поля товара
-	};
-
-	const handleSaveProduct = (productId) => {
-		// Добавить обработчик сохранения изменений товара
+	const onClickAddNewProduct = () => {
+		request(`/products`, "POST", { title: "Новый продукт" }).then(() => {
+			dispatch(setIsUpdatedProducts(!isUpdatingProducts));
+		});
 	};
 
 	return (
 		<Container>
 			<div className={styles.admin_page}>
-				<h3>Все товары</h3>
+				<div className={styles.admin_page_header}>
+					<Search />
+					<Sorting />
+					<Button onClick={onClickAddNewProduct}> Добавить новый товар</Button>
+					<Button> Настройка доступа пользователей</Button>
+				</div>
 				<table className={styles.table}>
 					<thead>
-						<td className={styles.btn_cell}></td>
-						<td>Артикул</td>
-						<td>Название</td>
-						<td>Описание</td>
-						<td>Картинака</td>
+						<tr>
+							<td className={styles.btn_cell}></td>
+							<td>Артикул</td>
+							<td>Название</td>
+							<td>Описание</td>
+							<td>Ссылка на фото</td>
+							<td>Цена</td>
+							<td>Категория</td>
+							<td>Бренд</td>
+							<td>Рейтинг</td>
+							<td>Возрастная катогория</td>
+							<td>По типу волос катогория</td>
+							<td>Фото</td>
+						</tr>
 					</thead>
 					<tbody>
 						{products.map((product) => (
-							<tr key={product.id}>
-								<td className={styles.btn_cell}>
-									<button onClick={() => setEditingProduct(product.id)}>
-										Редактировать
-									</button>
-									<button
-										className={styles.btn_delete}
-										onClick={() => handleDeleteProduct(product.id)}
-									>
-										Удалить
-									</button>
-									{editingProduct === product.id && (
-										<button onClick={() => handleSaveProduct(product.id)}>
-											Сохранить
-										</button>
-									)}
-								</td>
-								<td>{product.id}</td>
-								<td>
-									{editingProduct === product.id ? (
-										<input
-											value={product.title}
-											onChange={(e) =>
-												handleProductChange(product.id, "title", e.target.value)
-											}
-										/>
-									) : (
-										product.title
-									)}
-								</td>
-								<td>
-									{editingProduct === product.id ? (
-										<input
-											value={product.description}
-											onChange={(e) =>
-												handleProductChange(
-													product.id,
-													"description",
-													e.target.value,
-												)
-											}
-										/>
-									) : (
-										product.description
-									)}
-								</td>
-								<td className={styles.image_cell}>
-									<img
-										className={styles.image}
-										src={product.imgUrl}
-										alt="some cosmetic"
-									/>
-								</td>
-							</tr>
+							<TableRow key={product.id} product={product} />
 						))}
 					</tbody>
 				</table>
-				<Pagination />
+				<Pagination page={page} setPage={setPage} />
+				<Modal />
 			</div>
 		</Container>
 	);

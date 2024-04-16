@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	font-size: 14px;
 }
 
 .table {
@@ -25,11 +26,9 @@ th + th {
 .btn_delete {
 	color: red;
 }
-.image {
-	max-height: 75px;
-	max-width: 90px;
-	margin: 0 auto;
-}
-.image_cell {
-	text-align: center;
+
+.admin_page_header {
+	display: flex;
+	gap: 20px;
+	margin: 10px;
 }

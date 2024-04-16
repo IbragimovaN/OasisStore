@@ -5,8 +5,6 @@ import { useSelector } from "react-redux";
 export const ProtectedRoutes = ({ children, roles }) => {
 	const user = useSelector(userSelector);
 
-	console.log(user);
-
 	if (!user) {
 		return <Navigate to="/login" />;
 	}

@@ -28,9 +28,9 @@ export const menu = [
 		id: "forMan",
 		name: "для мужчин",
 		children: [
-			{ id: "deodorantMan", name: "дезодоранты" },
-			{ id: "showerGellMan", name: "гели для душа" },
-			{ id: "shampooMan", name: "шампуни" },
+			{ id: "deodorantMan", name: "дезодоранты для мужчин" },
+			{ id: "showerGellMan", name: "гели для душа для мужчин" },
+			{ id: "shampooMan", name: "шампуни для мужчин" },
 		],
 	},
 ];
