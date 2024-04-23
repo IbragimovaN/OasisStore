@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import styles from "./Product-page.module.css";
+import { useNavigate, useParams } from "react-router-dom";
 import { categoryList, allFilterPanelTypeslist } from "../../constants";
+
 import {
 	currentProductSelector,
 	setCurrentProductAction,
 	setIsLoading,
 } from "../../redux";
 import { request } from "../../utils.js/request";
-import { Button, Container } from "../../components";
+import { Container } from "../../components";
+import { FieldAddToBag } from "./components/fieldAddIToBag/Field-add-to-bag";
+import { Property } from "./components/property/Property";
+import styles from "./Product-page.module.css";
 
 export const ProductPage = () => {
 	const dispatch = useDispatch();
 	const params = useParams();
-
+	const navigate = useNavigate();
 	const currentProduct = useSelector(currentProductSelector);
 	const [category, setCategory] = useState();
 	const [age, setAge] = useState();
@@ -25,19 +28,16 @@ export const ProductPage = () => {
 
 		request(`/products/${params.productId}`)
 			.then((data) => {
-				console.log(data);
 				dispatch(setCurrentProductAction(data.data));
-				const current = categoryList.filter((item) => {
-					return item.id === data.data.category;
-				});
+				const current = categoryList.filter(
+					(item) => item.id === data.data.category,
+				);
 
-				const nameAge = allFilterPanelTypeslist[0].checkList.filter((item) => {
-					return item.checkId === Number(data.data.age);
-				});
+				const nameAge = allFilterPanelTypeslist[0].checkList.filter(
+					(item) => item.checkId === Number(data.data.age),
+				);
 				const nameHairType = allFilterPanelTypeslist[2].checkList.filter(
-					(item) => {
-						return item.checkId === Number(data.data.hairType);
-					},
+					(item) => item.checkId === Number(data.data.hairType),
 				);
 
 				setCategory(...current);
@@ -49,9 +49,16 @@ export const ProductPage = () => {
 			});
 	}, []);
 
+	const onClickBack = () => {
+		navigate(-1);
+	};
+
 	return (
 		<Container>
 			<div className={styles.wrapper}>
+				<button onClick={onClickBack} className={styles.back_btn}>
+					&#8592;
+				</button>
 				<img
 					src={currentProduct.imgUrl}
 					alt="some"
@@ -59,42 +66,27 @@ export const ProductPage = () => {
 				></img>
 				<div className={styles.coll}>
 					<h3 className={styles.title}>{currentProduct.title}</h3>
-					<div className={styles.properties}>
-						<h3 className={styles.property_title}>Артикул:</h3>
-						{currentProduct.id}
-					</div>
-					<div className={styles.properties}>
-						<h3 className={styles.property_title}>Бренд:</h3>
-						{currentProduct.brand}
-					</div>
-					<div className={styles.properties}>
-						<h3 className={styles.property_title}>Категория:</h3>
-						{category?.name}
-					</div>
+
+					<Property propertyName="Артикул" value={currentProduct.id} />
+					<Property propertyName="Бренд" value={currentProduct.brand} />
+					<Property propertyName="Категория" value={category?.name} />
+
 					{currentProduct.age && currentProduct.age !== "" && (
-						<div className={styles.properties}>
-							<h3 className={styles.property_title}>Походит для возраста:</h3>
-							{age?.name}лет
-						</div>
+						<Property propertyName="Походит для возраста" value={age?.name} />
 					)}
 					{currentProduct.hairType && currentProduct.hairType !== "" && (
-						<div className={styles.properties}>
-							<h3 className={styles.property_title}>Походит для типа волос:</h3>
-							{hairType?.name}
-						</div>
+						<Property
+							propertyName="Походит для типа волос"
+							value={hairType?.name}
+						/>
 					)}
-					<div className={styles.properties_desc}>
-						<h3 className={styles.property_title}>Описание:</h3>
-						{currentProduct.description}
-					</div>
+					<Property
+						propertyName="Описание"
+						value={currentProduct.description}
+						className={styles.properties_desc}
+					/>
 				</div>
-				<div className={styles.price_wrapper}>
-					<div className={styles.price}>
-						{currentProduct.price}
-						<i className="fa fa-rub" aria-hidden="true"></i>
-					</div>
-					<Button>В корзину</Button>
-				</div>
+				<FieldAddToBag currentProduct={currentProduct} />
 			</div>
 		</Container>
 	);

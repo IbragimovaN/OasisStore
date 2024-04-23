@@ -1,0 +1,32 @@
+.row {
+	width: 70%;
+	height: 110px;
+	display: grid;
+	grid-template: 1fr/10% 15% 40% 25% 20%;
+	border-top: 2px solid #dddd;
+	align-items: center;
+	justify-items: center;
+}
+.title {
+	justify-self: start;
+}
+.image {
+	max-width: 100px;
+	max-height: 100px;
+}
+.row:last-child {
+	border-bottom: 2px solid #dddd;
+}
+.count_wrapper {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.count_btn {
+	width: 25px;
+	height: 25px;
+	background-color: #b2d7d7;
+}
+.price {
+	justify-self: start;
+}

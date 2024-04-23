@@ -12,11 +12,7 @@ import {
 } from "../../redux/selectors";
 import { getProductsAsync } from "../../redux/actions/async-actions/get-products-async";
 import { Container } from "../../components";
-import {
-	setCurrentCategoryAction,
-	setIsLoading,
-	setShouidSearchAction,
-} from "../../redux";
+import { setCurrentCategoryAction, setIsLoading } from "../../redux";
 import { useParams } from "react-router-dom";
 import { Pagination } from "./catalog-components//paginations/paginations";
 import { PAGINATION_LIMIT } from "../../constants/paginations-limit";

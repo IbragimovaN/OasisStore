@@ -1,19 +1,27 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Control-panel.module.css";
-import { userSelector } from "../../../../redux";
+import { bagProductsArrSelector, userSelector } from "../../../../redux";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutAsync } from "../../../../redux/actions/async-actions/logout-async";
 import { setUserAction } from "../../../../redux/actions/set-user-action";
+import { totalPrice } from "../../../../utils.js/total-price";
 
 export const ControlPanel = () => {
 	const dispatch = useDispatch();
 	const user = useSelector(userSelector);
+	const bagProductsArr = useSelector(bagProductsArrSelector);
 
 	const onClickLogout = () => {
 		dispatch(logoutAsync());
 		sessionStorage.removeItem("userData");
 		dispatch(setUserAction(undefined));
 	};
+
+	const countBag = bagProductsArr.reduce((acc, item) => {
+		return (acc += item.count);
+	}, 0);
+
+	const total = totalPrice(bagProductsArr);
 
 	return (
 		<div className={styles.controlPanel}>
@@ -39,11 +47,16 @@ export const ControlPanel = () => {
 				)}
 			</div>
 
-			<div className={styles.icon_wrapper}>
-				<i className={`fa fa-shopping-bag`} aria-hidden="true"></i>
-			</div>
+			<Link to="/bag">
+				<div className={styles.icon_wrapper}>
+					<i className={`fa fa-shopping-bag`} aria-hidden="true"></i>
+					{bagProductsArr.length > 0 && (
+						<div className={styles.sircle}>{countBag}</div>
+					)}
+				</div>
+			</Link>
 			<div className={styles.cost}>
-				00.00 <i className="fa fa-rub" aria-hidden="true"></i>
+				{total} <i className="fa fa-rub" aria-hidden="true"></i>
 			</div>
 		</div>
 	);

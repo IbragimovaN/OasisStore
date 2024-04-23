@@ -3,9 +3,9 @@ export const allFilterPanelTypeslist = [
 		id: "age",
 		name: "Возрастная категория",
 		checkList: [
-			{ checkId: 0, name: "до 30" },
-			{ checkId: 1, name: "от 30 до 40" },
-			{ checkId: 2, name: "больще 40" },
+			{ checkId: 0, name: "до 30 лет" },
+			{ checkId: 1, name: "от 30 до 40 лет" },
+			{ checkId: 2, name: "больще 40 лет" },
 		],
 		forCategory: ["mask", "cream", "tonic&lotion", "cream_body", "scrub"],
 	},

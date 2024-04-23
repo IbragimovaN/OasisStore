@@ -1,0 +1,36 @@
+.bag {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.header {
+	width: 70%;
+	height: 50px;
+	display: grid;
+	grid-template: 1fr/10% 15% 40% 25% 20%;
+	border-top: 2px solid #dddd;
+	align-items: center;
+	justify-items: center;
+}
+.price {
+	justify-self: start;
+}
+
+.result {
+	width: 300px;
+	border: 1 px solid black;
+	text-align: center;
+}
+
+.result_bottom {
+	width: 300px;
+	border: 1 px solid black;
+	text-align: center;
+	position: absolute;
+	bottom: 20px;
+}
+.bag_empty {
+	text-align: center;
+	margin-top: 100px;
+	font-size: 20px;
+}

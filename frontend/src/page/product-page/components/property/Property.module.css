@@ -1,0 +1,14 @@
+.property_title {
+	color: #60b7bc;
+	font-size: 18px;
+}
+.properties {
+	display: flex;
+	gap: 10px;
+	align-items: end;
+}
+.properties_desc {
+	display: flex;
+	gap: 10px;
+	align-items: start;
+}

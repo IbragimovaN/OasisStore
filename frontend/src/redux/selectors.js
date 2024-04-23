@@ -20,3 +20,4 @@ export const errorServerSelector = (state) => state.errorState.serverError;
 export const modalTextSelector = (state) => state.modalState.modalText;
 export const isOpenModalSelector = (state) => state.modalState.isOpenModal;
 export const currentIdSelector = (state) => state.modalState.currentId;
+export const bagProductsArrSelector = (state) => state.bagState.bagProductsArr;

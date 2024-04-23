@@ -7,6 +7,7 @@ import {
 	searchReducer,
 	errorReducer,
 	modalReducer,
+	bagReducer,
 } from "./reducers";
 
 const reducer = combineReducers({
@@ -16,6 +17,7 @@ const reducer = combineReducers({
 	searchState: searchReducer,
 	errorState: errorReducer,
 	modalState: modalReducer,
+	bagState: bagReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -1,6 +1,7 @@
 import {
 	AdminPage,
 	Authorization,
+	Bag,
 	MainPage,
 	ProductPage,
 	Register,
@@ -36,6 +37,11 @@ export const routesPath = [
 	{
 		path: "/register",
 		element: <Register />,
+	},
+	{
+		path: "/bag",
+		element: <Bag />,
+		roles: [0, 1, 2],
 	},
 	{
 		path: "/adminPage",
