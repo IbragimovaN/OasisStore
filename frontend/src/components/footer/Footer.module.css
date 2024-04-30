@@ -1,8 +1,15 @@
 .footer {
 	height: 50px;
-	/* box-shadow: 1px -7px 13px 0px rgba(0, 0, 0, 0.48); */
-	z-index: 30;
+	color: var(--main-color);
+	z-index: 100;
 	width: 100%;
 	background-color: #fff;
-	border: 1px solid red;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 70px 0 70px;
+}
+.contacts {
+	display: flex;
+	flex-direction: column;
 }

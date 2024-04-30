@@ -17,6 +17,7 @@ import { TableRow } from "./components/Table-row/Table-row";
 import { Modal } from "../../components/modal/Modal";
 import { request } from "../../utils.js/request";
 import { Sorting } from "../../components/sorting/Sorting";
+import { ProtectedRoutes } from "../../components/protected-routes/Protected-routes";
 
 export const AdminPage = () => {
 	const dispatch = useDispatch();

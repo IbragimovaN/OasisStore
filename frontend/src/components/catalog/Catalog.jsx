@@ -12,11 +12,18 @@ import {
 } from "../../redux/selectors";
 import { getProductsAsync } from "../../redux/actions/async-actions/get-products-async";
 import { Container } from "../../components";
-import { setCurrentCategoryAction, setIsLoading } from "../../redux";
-import { useParams } from "react-router-dom";
+import {
+	setConnectionError,
+	setCurrentCategoryAction,
+	setIsLoading,
+} from "../../redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { Pagination } from "./catalog-components//paginations/paginations";
 import { PAGINATION_LIMIT } from "../../constants/paginations-limit";
 import { setFilterPanelTypeList } from "../../redux/actions/set-filterPanelTypeList-action";
+import { includesRouteParams } from "./utills/includes-route-params";
+import { setRouteErrorAction } from "../../redux/actions/set-route-error";
+import { ERROR } from "../../constants/error-message";
 
 export const Catalog = () => {
 	const dispatch = useDispatch();
@@ -27,21 +34,39 @@ export const Catalog = () => {
 	const shouldSearch = useSelector(shouldSearchSelector);
 	const [page, setPage] = useState(1);
 
+	const navigate = useNavigate();
+
+	const handleError = (set, message) => {
+		dispatch(set(message));
+		dispatch(setIsLoading(false));
+		navigate("/error");
+	};
+
 	useEffect(() => {
 		dispatch(setIsLoading(true));
 		if (params.idCategory) {
+			!includesRouteParams(params.idCategory) &&
+				handleError(setRouteErrorAction, ERROR.NOT_FOUND);
+
 			Promise.all([
 				dispatch(getProductsAsync(params.idCategory)),
 				dispatch(setCurrentCategoryAction(params?.idCategory)),
 				dispatch(setFilterPanelTypeList(params?.idCategory)),
-			]).finally(() => {
-				dispatch(setIsLoading(false));
-			});
+			])
+				.then(() => {
+					dispatch(setIsLoading(false));
+				})
+				.catch((error) => {
+					handleError(setConnectionError, ERROR.NO_CONNECTION);
+				});
 		} else {
 			dispatch(setCurrentCategoryAction(""));
-			dispatch(
-				getProductsAsync(null, searchPhrase, page, PAGINATION_LIMIT),
-			).finally(() => dispatch(setIsLoading(false)));
+			dispatch(getProductsAsync(null, searchPhrase, page, 12))
+				.then(() => dispatch(setIsLoading(false)))
+
+				.catch((error) => {
+					handleError(setConnectionError, ERROR.NO_CONNECTION);
+				});
 		}
 	}, [dispatch, params, page, shouldSearch]);
 

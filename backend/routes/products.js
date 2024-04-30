@@ -24,9 +24,12 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const product = await getProduct(req.params.id);
-
-  res.send({ data: mapProduct(product) });
+  try {
+    const product = await getProduct(req.params.id);
+    res.send({ data: mapProduct(product) });
+  } catch (e) {
+    res.send({ error: e.message || "Неизвестная ошибка" });
+  }
 });
 router.post("/", authenticated, hasRole([ROLES.ADMIN]), async (req, res) => {
   try {

@@ -1,20 +1,18 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
 import { Input, Button, Container } from "../../components";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Register.module.css";
 import { regFromSchema } from "./validate/reg-form-schema";
-import { setUserAsync } from "../../redux/actions/async-actions/login-async";
-import { errorServerSelector } from "../../redux";
-import { setServerErrorAction } from "../../redux/actions/set-server-error-action";
+import { errorServerFormSelector } from "../../redux";
+import { setServerErrorFormAction } from "../../redux/actions/set-server-error-action";
 import { registerAsync } from "../../redux/actions/async-actions/register-async";
 
 export const Register = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const serverError = useSelector(errorServerSelector);
+	const serverErrorForm = useSelector(errorServerFormSelector);
 	const {
 		register,
 		reset,
@@ -40,7 +38,7 @@ export const Register = () => {
 		errors?.password?.message ||
 		errors?.passcheck?.message;
 
-	const errorMessage = formError || serverError;
+	const errorMessage = formError || serverErrorForm;
 
 	return (
 		<Container>
@@ -52,21 +50,21 @@ export const Register = () => {
 							type="text"
 							placeholder="Логин"
 							{...register("login", {
-								onChange: () => dispatch(setServerErrorAction(null)),
+								onChange: () => dispatch(setServerErrorFormAction(null)),
 							})}
 						/>
 						<Input
 							type="password"
 							placeholder="Пароль"
 							{...register("password", {
-								onChange: () => dispatch(setServerErrorAction(null)),
+								onChange: () => dispatch(setServerErrorFormAction(null)),
 							})}
 						/>
 						<Input
 							type="password"
 							placeholder="Повтор пароля"
 							{...register("passcheck", {
-								onChange: () => dispatch(setServerErrorAction(null)),
+								onChange: () => dispatch(setServerErrorFormAction(null)),
 							})}
 						/>
 						<Button type="submit" disabled={!!formError}>

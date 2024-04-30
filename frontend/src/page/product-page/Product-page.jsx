@@ -12,7 +12,9 @@ import { request } from "../../utils.js/request";
 import { Container } from "../../components";
 import { FieldAddToBag } from "./components/fieldAddIToBag/Field-add-to-bag";
 import { Property } from "./components/property/Property";
+import { setRouteErrorAction } from "../../redux/actions/set-route-error";
 import styles from "./Product-page.module.css";
+import { ERROR } from "../../constants/error-message";
 
 export const ProductPage = () => {
 	const dispatch = useDispatch();
@@ -27,22 +29,27 @@ export const ProductPage = () => {
 		dispatch(setIsLoading(true));
 
 		request(`/products/${params.productId}`)
-			.then((data) => {
-				dispatch(setCurrentProductAction(data.data));
-				const current = categoryList.filter(
-					(item) => item.id === data.data.category,
-				);
+			.then(({ data, error }) => {
+				if (error) {
+					dispatch(setRouteErrorAction(ERROR.NOT_FOUND));
+					navigate("/error");
+				} else if (data) {
+					dispatch(setCurrentProductAction(data.data));
+					const current = categoryList.filter(
+						(item) => item.id === data.data.category,
+					);
 
-				const nameAge = allFilterPanelTypeslist[0].checkList.filter(
-					(item) => item.checkId === Number(data.data.age),
-				);
-				const nameHairType = allFilterPanelTypeslist[2].checkList.filter(
-					(item) => item.checkId === Number(data.data.hairType),
-				);
+					const nameAge = allFilterPanelTypeslist[0].checkList.filter(
+						(item) => item.checkId === Number(data.data.age),
+					);
+					const nameHairType = allFilterPanelTypeslist[2].checkList.filter(
+						(item) => item.checkId === Number(data.data.hairType),
+					);
 
-				setCategory(...current);
-				setHairType(...nameHairType);
-				setAge(...nameAge);
+					setCategory(...current);
+					setHairType(...nameHairType);
+					setAge(...nameAge);
+				}
 			})
 			.then(() => {
 				dispatch(setIsLoading(false));

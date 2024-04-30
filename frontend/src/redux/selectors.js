@@ -16,7 +16,11 @@ export const searchPhraseSelector = (state) => state.searchState.searchPhrase;
 export const shouldSearchSelector = (state) => state.searchState.shouldSearch;
 export const lastPageSelector = (state) => state.catalogState.lastPage;
 export const userSelector = (state) => state.userState.user;
-export const errorServerSelector = (state) => state.errorState.serverError;
+export const errorServerFormSelector = (state) =>
+	state.errorState.serverErrorForm;
+export const routeErrorSelector = (state) => state.errorState.routeError;
+export const connectionErrorSelector = (state) =>
+	state.errorState.connectionError;
 export const modalTextSelector = (state) => state.modalState.modalText;
 export const isOpenModalSelector = (state) => state.modalState.isOpenModal;
 export const currentIdSelector = (state) => state.modalState.currentId;

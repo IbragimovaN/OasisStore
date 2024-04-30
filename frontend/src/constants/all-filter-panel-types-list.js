@@ -25,8 +25,8 @@ export const allFilterPanelTypeslist = [
 			"scrub",
 			"shampoo",
 			"balsam",
-			"deodorantMan",
-			"shampooMan",
+			// "deodorantMan",
+			// "shampooMan",
 		],
 	},
 	{

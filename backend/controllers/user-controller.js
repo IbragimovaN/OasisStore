@@ -23,8 +23,8 @@ async function login(login, password) {
     throw new Error("Пользователь не найден");
   }
   const isPasswordCorrect = await bcrypt.compare(password, user.password);
-  if (!password) {
-    throw new Error("Password is empty");
+  if (!isPasswordCorrect) {
+    throw new Error("Не верный пароль");
   }
   const token = generateToken({ id: user.id });
   return { user, token };

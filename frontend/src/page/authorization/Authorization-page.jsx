@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -9,14 +9,14 @@ import {
 	loginAsync,
 	setUserAsync,
 } from "../../redux/actions/async-actions/login-async";
-import { errorServerSelector, userSelector } from "../../redux";
+import { errorServerFormSelector, userSelector } from "../../redux";
 import { authFormSchema } from "./vallidate/auth-form-schema";
-import { setServerErrorAction } from "../../redux/actions/set-server-error-action";
+import { setServerErrorFormAction } from "../../redux/actions/set-server-error-action";
 
 export const Authorization = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const serverError = useSelector(errorServerSelector);
+	const serverErrorForm = useSelector(errorServerFormSelector);
 	const {
 		register,
 		reset,
@@ -32,12 +32,17 @@ export const Authorization = () => {
 
 	const onSubmit = ({ login, password }) => {
 		dispatch(loginAsync(login, password)).then((roleId) => {
-			roleId === 0 ? navigate("/adminPage") : navigate("/");
+			console.log(roleId);
+			roleId > 0
+				? roleId === 0
+					? navigate("/adminPage")
+					: navigate("/")
+				: navigate("/login");
 		});
 	};
 
 	const formError = errors?.login?.message || errors?.password?.message;
-	const errorMessage = formError || serverError;
+	const errorMessage = formError || serverErrorForm;
 
 	return (
 		<Container>
@@ -49,14 +54,14 @@ export const Authorization = () => {
 							type="text"
 							placeholder="Логин"
 							{...register("login", {
-								onChange: () => dispatch(setServerErrorAction(null)),
+								onChange: () => dispatch(setServerErrorFormAction(null)),
 							})}
 						/>
 						<Input
 							type="text"
 							placeholder={"пароль"}
 							{...register("password", {
-								onChange: () => dispatch(setServerErrorAction(null)),
+								onChange: () => dispatch(setServerErrorFormAction(null)),
 							})}
 						/>
 						<Button type="submit">Войти</Button>

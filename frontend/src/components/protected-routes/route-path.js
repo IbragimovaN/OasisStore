@@ -1,3 +1,4 @@
+import { ERROR } from "../../constants/error-message";
 import {
 	AdminPage,
 	Authorization,
@@ -8,6 +9,8 @@ import {
 } from "../../page";
 import { CatalogWithAllProducts } from "../../page/catalog-with-all-products/CatalogWithAllProducts";
 import { CatalogWithProductsCategory } from "../../page/catalog-with-products-category/CatalogWithProductsCategory";
+import { ErrorPage } from "../../page/error-page/Error-page";
+import { ProtectedRoutes } from "./Protected-routes";
 
 export const routesPath = [
 	{
@@ -51,6 +54,10 @@ export const routesPath = [
 	},
 	{
 		path: "/error",
-		element: <div className="error">Ошибка доступа</div>,
+		element: <ErrorPage />,
+	},
+	{
+		path: "/*",
+		element: <ErrorPage error={ERROR.NOT_FOUND} />,
 	},
 ];

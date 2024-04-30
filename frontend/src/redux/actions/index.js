@@ -13,3 +13,4 @@ export * from "./set-current-product-action";
 export * from "./set-count";
 export * from "./add-product-to-bag";
 export * from "./delete-product-from-bag-action";
+export * from "./set-connection-error";

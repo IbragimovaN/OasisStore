@@ -1,8 +1,8 @@
-import { SET_SERVER_ERROR } from "./constants/action-constants";
+import { SET_SERVER_ERROR_FORM } from "./constants/action-constants";
 
-export const setServerErrorAction = (data) => {
+export const setServerErrorFormAction = (data) => {
 	return {
-		type: SET_SERVER_ERROR,
+		type: SET_SERVER_ERROR_FORM,
 		payload: data,
 	};
 };
