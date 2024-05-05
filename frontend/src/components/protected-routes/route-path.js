@@ -4,13 +4,14 @@ import {
 	Authorization,
 	Bag,
 	MainPage,
+	NewPassword,
 	ProductPage,
 	Register,
+	ResetPassword,
 } from "../../page";
 import { CatalogWithAllProducts } from "../../page/catalog-with-all-products/CatalogWithAllProducts";
 import { CatalogWithProductsCategory } from "../../page/catalog-with-products-category/CatalogWithProductsCategory";
 import { ErrorPage } from "../../page/error-page/Error-page";
-import { ProtectedRoutes } from "./Protected-routes";
 
 export const routesPath = [
 	{
@@ -44,13 +45,21 @@ export const routesPath = [
 	{
 		path: "/bag",
 		element: <Bag />,
-		roles: [0, 1, 2],
 	},
 	{
 		path: "/adminPage",
 		element: <AdminPage />,
 		isAuth: true,
 		roles: [0, 1],
+	},
+
+	{
+		path: `/auth/password/:resetToken`,
+		element: <NewPassword />,
+	},
+	{
+		path: "/login/password",
+		element: <ResetPassword />,
 	},
 	{
 		path: "/error",

@@ -6,3 +6,5 @@ export * from "./bag/Bag";
 export * from "./admin-page.jsx/Admin-page";
 export * from "./register/Register";
 export * from "./product-page/Product-page.jsx";
+export * from "./reset-password/reset-password.jsx";
+export * from "./new-password/New-password.jsx";

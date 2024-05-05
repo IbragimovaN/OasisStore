@@ -4,6 +4,7 @@ import { isLoadingSelector } from "../../redux";
 
 export const Container = ({ children }) => {
 	const isLoading = useSelector(isLoadingSelector);
+
 	return (
 		<div className={styles.container}>
 			{isLoading ? (

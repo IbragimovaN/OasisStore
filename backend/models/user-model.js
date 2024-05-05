@@ -3,7 +3,7 @@ import ROLES from "../constants/roles.js";
 
 const UserSchema = mongoose.Schema(
   {
-    login: {
+    email: {
       type: String,
       required: true,
       unique: true,
@@ -16,6 +16,8 @@ const UserSchema = mongoose.Schema(
       type: Number,
       default: ROLES.USER,
     },
+    resetToken: String,
+    resetTokenExp: Date,
   },
   { timestamps: true }
 );

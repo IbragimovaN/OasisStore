@@ -16,6 +16,7 @@ export const searchPhraseSelector = (state) => state.searchState.searchPhrase;
 export const shouldSearchSelector = (state) => state.searchState.shouldSearch;
 export const lastPageSelector = (state) => state.catalogState.lastPage;
 export const userSelector = (state) => state.userState.user;
+export const infoMessageSelector = (state) => state.userState.infoMessage;
 export const errorServerFormSelector = (state) =>
 	state.errorState.serverErrorForm;
 export const routeErrorSelector = (state) => state.errorState.routeError;

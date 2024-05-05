@@ -46,7 +46,6 @@ export const AdminPage = () => {
 					<Search />
 					<Sorting />
 					<Button onClick={onClickAddNewProduct}> Добавить новый товар</Button>
-					<Button> Настройка доступа пользователей</Button>
 				</div>
 				<table className={styles.table}>
 					<thead>

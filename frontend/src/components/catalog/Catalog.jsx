@@ -42,6 +42,7 @@ export const Catalog = () => {
 		navigate("/error");
 	};
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		dispatch(setIsLoading(true));
 		if (params.idCategory) {
@@ -61,7 +62,7 @@ export const Catalog = () => {
 				});
 		} else {
 			dispatch(setCurrentCategoryAction(""));
-			dispatch(getProductsAsync(null, searchPhrase, page, 12))
+			dispatch(getProductsAsync(null, searchPhrase, page, PAGINATION_LIMIT))
 				.then(() => dispatch(setIsLoading(false)))
 
 				.catch((error) => {

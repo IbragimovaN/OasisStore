@@ -34,16 +34,16 @@ export const ProductPage = () => {
 					dispatch(setRouteErrorAction(ERROR.NOT_FOUND));
 					navigate("/error");
 				} else if (data) {
-					dispatch(setCurrentProductAction(data.data));
+					dispatch(setCurrentProductAction(data));
 					const current = categoryList.filter(
-						(item) => item.id === data.data.category,
+						(item) => item.id === data.category,
 					);
 
 					const nameAge = allFilterPanelTypeslist[0].checkList.filter(
-						(item) => item.checkId === Number(data.data.age),
+						(item) => item.checkId === Number(data.age),
 					);
 					const nameHairType = allFilterPanelTypeslist[2].checkList.filter(
-						(item) => item.checkId === Number(data.data.hairType),
+						(item) => item.checkId === Number(data.hairType),
 					);
 
 					setCategory(...current);

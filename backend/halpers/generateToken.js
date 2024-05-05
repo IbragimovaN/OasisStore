@@ -2,9 +2,7 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 import express from "express";
 
-const secret = process.env.JWT_SECRET;
-
-function generateToken(data) {
+function generateToken(data, secret) {
   return jwt.sign(data, secret, { expiresIn: "30d" });
 }
 

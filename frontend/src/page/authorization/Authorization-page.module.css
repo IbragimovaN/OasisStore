@@ -8,23 +8,21 @@
 .wrapper {
 	width: 800px;
 	height: 400px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	display: grid;
+	grid-template: 30px 30px 150px 50px 30px/1fr;
+	align-items: end;
+	justify-items: center;
 
 	background-color: #e4f0f1;
 	padding: 50px;
 }
 .form {
 	width: 300px;
-	height: 170px;
+	height: 120px;
 	justify-content: space-between;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-}
-.title {
-	margin-bottom: 30px;
 }
 
 .error {
