@@ -112,7 +112,6 @@ router.get("/password/:token", async (req, res) => {
 });
 
 router.patch("/password/:token/:id", async (req, res) => {
-  console.log(req.body);
   try {
     const passwordHash = await bcrypt.hash(req.body.password, 10);
 

@@ -1,22 +1,21 @@
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Container, Input } from "../../components";
 import { request } from "../../utils.js/request";
-import styles from "./reset-password.module.css";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch, useSelector } from "react-redux";
 import {
 	errorServerFormSelector,
 	setInfoMessage,
 	setServerErrorFormAction,
 } from "../../redux";
 import { resetPasswordFromSchema } from "./validate/reset-password-form-schema";
+import styles from "./reset-password.module.css";
 
 export const ResetPassword = () => {
 	const dispatch = useDispatch();
 	const serverErrorForm = useSelector(errorServerFormSelector);
 	const {
 		register,
-		reset,
 		handleSubmit,
 		formState: { errors },
 	} = useForm({

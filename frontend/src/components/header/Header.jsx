@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Logo, ControlPanel, Menu } from "./header-components";
-import styles from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { Logo, ControlPanel, Menu } from "./header-components";
 import { Button } from "../button/Button";
 import { ROLE } from "../../constants";
 import { infoMessageSelector, setInfoMessage, userSelector } from "../../redux";
-import { useEffect } from "react";
+import styles from "./Header.module.css";
 
 export const Header = () => {
 	const dispatch = useDispatch();

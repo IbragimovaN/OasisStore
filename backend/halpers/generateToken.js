@@ -6,7 +6,7 @@ function generateToken(data, secret) {
   return jwt.sign(data, secret, { expiresIn: "30d" });
 }
 
-function verify(token) {
+function verify(token, secret) {
   if (!token) {
     throw new Error("Invalid token");
   }

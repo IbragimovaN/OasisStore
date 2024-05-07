@@ -1,16 +1,16 @@
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Link, useNavigate } from "react-router-dom";
-import { Button, Container, Input } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Authorization-page.module.css";
-import { loginAsync } from "../../redux/actions/async-actions/login-async";
+import { Link, useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Button, Container, Input } from "../../components";
+import { authFormSchema } from "./vallidate/auth-form-schema";
 import {
 	errorServerFormSelector,
 	userSelector,
 	setServerErrorFormAction,
+	loginAsync,
 } from "../../redux";
-import { authFormSchema } from "./vallidate/auth-form-schema";
+import styles from "./Authorization-page.module.css";
 
 export const Authorization = () => {
 	const navigate = useNavigate();
@@ -19,7 +19,6 @@ export const Authorization = () => {
 	const user = useSelector(userSelector);
 	const {
 		register,
-		reset,
 		handleSubmit,
 		formState: { errors },
 	} = useForm({

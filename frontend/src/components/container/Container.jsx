@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import styles from "./Container.module.css";
 import { isLoadingSelector } from "../../redux";
+import styles from "./Container.module.css";
 
 export const Container = ({ children }) => {
 	const isLoading = useSelector(isLoadingSelector);

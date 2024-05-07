@@ -9,11 +9,6 @@ const ProductSchema = mongoose.Schema(
     },
     image_url: {
       type: String,
-      // required: true,
-      // validate: {
-      //   validator: validator.isURL,
-      //   message: "Image should be a valid url",
-      // },
     },
 
     price: {

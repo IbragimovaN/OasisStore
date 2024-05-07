@@ -1,29 +1,27 @@
-import styles from "./Catalog.module.css";
-import { useEffect, useState } from "react";
-import { ProductCard } from "./catalog-components/product-card/Product-card";
-import { H2 } from "../../components/h2/H2";
-import { FilterPanel } from "./catalog-components/filter-panel/Filter-panel";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { ProductCard, FilterPanel } from "./catalog-components";
+import { Container, H2, Pagination } from "../../components";
+import { PAGINATION_LIMIT } from "../../constants/paginations-limit";
+import { ERROR } from "../../constants/error-message";
+import { includesRouteParams } from "./utills/includes-route-params";
+
+import {
+	setConnectionError,
+	setCurrentCategoryAction,
+	setIsLoading,
+	setFilterPanelTypeList,
+	setRouteErrorAction,
+	getProductsAsync,
+} from "../../redux";
 import {
 	currentCategorySelector,
 	productsSelector,
 	searchPhraseSelector,
 	shouldSearchSelector,
 } from "../../redux/selectors";
-import { getProductsAsync } from "../../redux/actions/async-actions/get-products-async";
-import { Container } from "../../components";
-import {
-	setConnectionError,
-	setCurrentCategoryAction,
-	setIsLoading,
-} from "../../redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { Pagination } from "./catalog-components//paginations/paginations";
-import { PAGINATION_LIMIT } from "../../constants/paginations-limit";
-import { setFilterPanelTypeList } from "../../redux/actions/set-filterPanelTypeList-action";
-import { includesRouteParams } from "./utills/includes-route-params";
-import { setRouteErrorAction } from "../../redux/actions/set-route-error";
-import { ERROR } from "../../constants/error-message";
+import styles from "./Catalog.module.css";
 
 export const Catalog = () => {
 	const dispatch = useDispatch();

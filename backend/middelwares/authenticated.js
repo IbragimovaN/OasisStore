@@ -3,7 +3,7 @@ import { verify } from "../halpers/generateToken.js";
 
 export default async function (req, res, next) {
   try {
-    const tokenData = verify(req.cookies.token);
+    const tokenData = verify(req.cookies.token, process.env.JWT_SECRET);
 
     const user = await User.findOne({ _id: tokenData.id });
 

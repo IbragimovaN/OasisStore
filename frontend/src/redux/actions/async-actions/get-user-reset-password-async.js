@@ -2,7 +2,7 @@ import { request } from "../../../utils.js/request";
 import { setRouteErrorAction } from "../set-route-error";
 import { setUserAction } from "../set-user-action";
 
-export const getUserResetTokenAsync = (resetToken) => (dispatch) => {
+export const getUserResetPasswordAsync = (resetToken) => (dispatch) => {
 	return request(`/password/${resetToken}`).then(({ user, error }) => {
 		if (error) {
 			dispatch(setRouteErrorAction(error));

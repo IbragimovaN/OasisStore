@@ -28,6 +28,7 @@ export const Sorting = () => {
 		setCurrentSorting(e.target.value);
 	};
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => {
 		const sortObj = sortOption.find((item) => item.value === currentSorting);
 		if (sortObj) {

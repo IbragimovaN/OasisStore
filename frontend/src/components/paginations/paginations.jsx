@@ -1,5 +1,5 @@
-import { lastPageSelector } from "../../../../redux";
-import { Button } from "../../../button/Button";
+import { lastPageSelector } from "../../redux";
+import { Button } from "../button/Button";
 import styles from "./paginations.module.css";
 import { useSelector } from "react-redux";
 

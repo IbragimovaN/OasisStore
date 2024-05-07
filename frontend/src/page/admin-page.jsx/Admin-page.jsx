@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Search } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Admin-page.module.css";
 import {
 	productsSelector,
 	searchPhraseSelector,
@@ -12,12 +10,18 @@ import {
 	setIsUpdatedProducts,
 } from "../../redux";
 import { PAGINATION_LIMIT } from "../../constants/paginations-limit";
-import { Pagination } from "../../components/catalog/catalog-components/paginations/paginations";
+
+import {
+	Button,
+	Container,
+	Search,
+	Pagination,
+	Modal,
+	Sorting,
+} from "../../components";
 import { TableRow } from "./components/Table-row/Table-row";
-import { Modal } from "../../components/modal/Modal";
 import { request } from "../../utils.js/request";
-import { Sorting } from "../../components/sorting/Sorting";
-import { ProtectedRoutes } from "../../components/protected-routes/Protected-routes";
+import styles from "./Admin-page.module.css";
 
 export const AdminPage = () => {
 	const dispatch = useDispatch();
@@ -28,13 +32,14 @@ export const AdminPage = () => {
 	const [page, setPage] = useState(1);
 
 	useEffect(() => {
+		dispatch(setIsLoading(true));
 		dispatch(
 			getProductsAsync(null, searchPhrase, page, PAGINATION_LIMIT),
 		).finally(() => dispatch(setIsLoading(false)));
 	}, [dispatch, shouldSearch, page, isUpdatingProducts]);
 
 	const onClickAddNewProduct = () => {
-		request(`/products`, "POST", { title: "Новый продукт" }).then(() => {
+		request("/products", "POST", { title: "Новый продукт" }).then((data) => {
 			dispatch(setIsUpdatedProducts(!isUpdatingProducts));
 		});
 	};

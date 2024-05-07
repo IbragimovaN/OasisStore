@@ -1,17 +1,17 @@
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Input, Button, Container } from "../../components";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import styles from "./Register.module.css";
 import { regFromSchema } from "./validate/reg-form-schema";
 import {
 	errorServerFormSelector,
 	setInfoMessage,
 	userSelector,
+	setServerErrorFormAction,
+	registerAsync,
 } from "../../redux";
-import { setServerErrorFormAction } from "../../redux/actions/set-server-error-action";
-import { registerAsync } from "../../redux/actions/async-actions/register-async";
+import styles from "./Register.module.css";
 
 export const Register = () => {
 	const navigate = useNavigate();
@@ -20,7 +20,6 @@ export const Register = () => {
 	const user = useSelector(userSelector);
 	const {
 		register,
-		reset,
 		handleSubmit,
 		formState: { errors },
 	} = useForm({

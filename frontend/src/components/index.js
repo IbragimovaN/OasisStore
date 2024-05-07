@@ -4,5 +4,8 @@ export * from "./input/Input";
 export * from "./button/Button";
 export * from "./h2/H2";
 export * from "./search/Search";
+export * from "./sorting/Sorting.jsx";
 export * from "./container/Container";
 export * from "./catalog/Catalog";
+export * from "./paginations/paginations.jsx";
+export * from "./modal/Modal.jsx";

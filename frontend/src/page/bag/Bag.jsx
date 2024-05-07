@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import { Button, Container } from "../../components";
 import { BagRow } from "./components/bag-row/Bag-row";
 import { bagProductsArrSelector } from "../../redux";
-import styles from "./Bag.module.css";
 import { totalPrice } from "../../utils.js/total-price";
+import styles from "./Bag.module.css";
 
 export const Bag = () => {
 	const bagProductsArr = useSelector(bagProductsArrSelector);

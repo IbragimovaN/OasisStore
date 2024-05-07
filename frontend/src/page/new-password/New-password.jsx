@@ -1,20 +1,20 @@
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Container, Input } from "../../components";
-import styles from "./New-password.module.css";
 import { regFromSchema } from "../register/validate/reg-form-schema";
-import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import {
 	editPasswordAsync,
 	errorServerFormSelector,
-	getUserResetTokenAsync,
+	getUserResetPasswordAsync,
 	routeErrorSelector,
 	setInfoMessage,
 	setServerErrorFormAction,
 	userSelector,
 } from "../../redux";
-import { useEffect } from "react";
+import styles from "./New-password.module.css";
 
 export const NewPassword = () => {
 	const navigate = useNavigate();
@@ -25,7 +25,6 @@ export const NewPassword = () => {
 	const user = useSelector(userSelector);
 	const {
 		register,
-		reset,
 		handleSubmit,
 		formState: { errors },
 	} = useForm({
@@ -37,7 +36,7 @@ export const NewPassword = () => {
 	});
 
 	useEffect(() => {
-		dispatch(getUserResetTokenAsync(params.resetToken));
+		dispatch(getUserResetPasswordAsync(params.resetToken));
 	}, [dispatch, params]);
 
 	const onSubmit = ({ password }) => {

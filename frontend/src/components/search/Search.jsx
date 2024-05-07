@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Input } from "../input/Input";
-import styles from "./Search.module.css";
 import { useMemo } from "react";
 import { debounce } from "lodash";
+import { Input } from "../input/Input";
 import {
 	searchPhraseSelector,
 	shouldSearchSelector,
@@ -11,11 +10,14 @@ import {
 	setSearchPhraseAction,
 	setShouidSearchAction,
 } from "../../redux/actions";
+import styles from "./Search.module.css";
 
 export const Search = () => {
 	const shouldSearch = useSelector(shouldSearchSelector);
 	const searchPhrase = useSelector(searchPhraseSelector);
 	const dispatch = useDispatch();
+
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const startDelayedSearch = useMemo(
 		() => debounce(() => dispatch(setShouidSearchAction(!shouldSearch)), 2000),
 		[],

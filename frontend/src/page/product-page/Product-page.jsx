@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { categoryList, allFilterPanelTypeslist } from "../../constants";
-
+import { categoryList, allFilterPanelTypeslist, ERROR } from "../../constants";
 import {
 	currentProductSelector,
 	setCurrentProductAction,
@@ -10,11 +9,9 @@ import {
 } from "../../redux";
 import { request } from "../../utils.js/request";
 import { Container } from "../../components";
-import { FieldAddToBag } from "./components/fieldAddIToBag/Field-add-to-bag";
-import { Property } from "./components/property/Property";
+import { FieldAddToBag, Property } from "./components";
 import { setRouteErrorAction } from "../../redux/actions/set-route-error";
 import styles from "./Product-page.module.css";
-import { ERROR } from "../../constants/error-message";
 
 export const ProductPage = () => {
 	const dispatch = useDispatch();
