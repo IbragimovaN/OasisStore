@@ -1,11 +1,23 @@
 import Product from "../models/product-model.js";
 
 async function addProduct(product) {
-  return Product.create(product);
+  const newProduct = Product.create(product);
+  await newProduct.populate({
+    path: "comments",
+    populate: "author",
+  });
+  return newProduct;
 }
 
 async function editProduct(id, newData) {
-  return Product.findByIdAndUpdate(id, newData, { returnDocument: "after" });
+  const updateProduct = Product.findByIdAndUpdate(id, newData, {
+    returnDocument: "after",
+  });
+  await updateProduct.populate({
+    path: "comments",
+    populate: "author",
+  });
+  return updateProduct;
 }
 
 async function deleteProduct(id) {
@@ -28,7 +40,10 @@ async function getProducts(search = "", limit, page) {
 
 async function getProduct(id) {
   try {
-    const currentProduct = await Product.findOne({ _id: id });
+    const currentProduct = await Product.findOne({ _id: id }).populate({
+      path: "comments",
+      populate: "author",
+    });
     if (!currentProduct) {
       throw new Error("Продукт не найден");
     } else {

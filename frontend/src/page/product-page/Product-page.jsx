@@ -9,7 +9,7 @@ import {
 } from "../../redux";
 import { request } from "../../utils.js/request";
 import { Container } from "../../components";
-import { FieldAddToBag, Property } from "./components";
+import { Comments, FieldAddToBag, Property } from "./components";
 import { setRouteErrorAction } from "../../redux/actions/set-route-error";
 import styles from "./Product-page.module.css";
 
@@ -92,6 +92,7 @@ export const ProductPage = () => {
 				</div>
 				<FieldAddToBag currentProduct={currentProduct} />
 			</div>
+			<Comments comments={currentProduct.comments} />
 		</Container>
 	);
 };

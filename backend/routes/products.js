@@ -6,9 +6,14 @@ import {
   editProduct,
   deleteProduct,
 } from "../controllers/product-controller.js";
+import {
+  addComment,
+  deleteComment,
+} from "../controllers/comments-controller.js";
 import authenticated from "../middelwares/authenticated.js";
 import hasRole from "../middelwares/hasRole.js";
 import mapProduct from "../halpers/mapProduct.js";
+import mapComment from "../halpers/mapComment.js";
 import ROLES from "../constants/roles.js";
 
 const router = express.Router({ mergeParams: true });
@@ -31,6 +36,27 @@ router.get("/:id", async (req, res) => {
     res.send({ error: e.message || "Неизвестная ошибка" });
   }
 });
+
+router.post("/:id/comments", authenticated, async (req, res) => {
+  const newComment = await addComment(req.params.id, {
+    content: req.body.content,
+    author: req.user.id,
+  });
+
+  res.send(mapComment(newComment));
+});
+
+router.delete(
+  "/:postId/comments/:commentId",
+  authenticated,
+  hasRole([ROLES.ADMIN, ROLES.MODERATOR]),
+  async (req, res) => {
+    await deleteComment(req.params.postId, req.params.commentId);
+
+    res.send({ error: null });
+  }
+);
+
 router.post("/", authenticated, hasRole([ROLES.ADMIN]), async (req, res) => {
   try {
     const newProduct = await addProduct({

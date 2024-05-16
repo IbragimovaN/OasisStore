@@ -32,6 +32,12 @@ const ProductSchema = mongoose.Schema(
     hair_type: {
       type: String,
     },
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId, //указываем что по идентефикатору - id мы ссылаемся на модель Comment чтобы связать посто с комментариям, тк комментариев может быть несколько, указываем массив
+        ref: "Comment",
+      },
+    ],
   },
   { timestamps: true }
 );
