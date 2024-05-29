@@ -1,6 +1,8 @@
 import bcrypt from "bcrypt";
 import User from "../models/user-model.js";
 import { generateToken } from "../halpers/generateToken.js";
+import { getProduct } from "./product-controller.js";
+import { populate } from "dotenv";
 
 async function register(email, password) {
   if (!password) {
@@ -13,13 +15,19 @@ async function register(email, password) {
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
-  const user = await User.create({ email: email, password: passwordHash });
+  let user = await User.create({ email: email, password: passwordHash });
+  user = await user.populate({
+    path: "favourites",
+  });
   const token = generateToken({ id: user.id }, process.env.JWT_SECRET);
   return { user, token };
 }
 
 async function login(email, password) {
-  const user = await User.findOne({ email: email });
+  let user = await User.findOne({ email: email });
+  user = await user.populate({
+    path: "favourites",
+  });
   if (!user) {
     throw new Error("Пользователь не найден");
   }
@@ -48,7 +56,46 @@ async function deleteUser(id) {
 }
 
 async function updateUser(id, newData) {
-  return User.findByIdAndUpdate(id, newData, { returnDocument: "after" });
+  let user = await User.findByIdAndUpdate(id, newData, {
+    returnDocument: "after",
+  });
+  user = await user.populate({
+    path: "favourites",
+  });
+  return user;
 }
 
-export { register, login, getUsers, getRoles, deleteUser, updateUser };
+async function addFavouriteProduct(productId, userId) {
+  const currentProduct = await getProduct(productId);
+
+  let user = await User.findByIdAndUpdate(
+    userId,
+    {
+      $push: { favourites: currentProduct },
+    },
+    { returnDocument: "after" }
+  );
+  user = await user.populate({
+    path: "favourites",
+  });
+
+  return user;
+}
+//delete
+async function deleteFavouriteProduct(productId, userId) {
+  const user = await User.findByIdAndUpdate(userId, {
+    $pull: { favourites: productId },
+  });
+  return user;
+}
+
+export {
+  register,
+  login,
+  getUsers,
+  getRoles,
+  deleteUser,
+  updateUser,
+  addFavouriteProduct,
+  deleteFavouriteProduct,
+};

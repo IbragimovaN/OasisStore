@@ -16,9 +16,16 @@ const UserSchema = mongoose.Schema(
       type: Number,
       default: ROLES.USER,
     },
+    favourites: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+      },
+    ],
     resetToken: String,
     resetTokenExp: Date,
   },
+
   { timestamps: true }
 );
 

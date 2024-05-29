@@ -31,6 +31,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const product = await getProduct(req.params.id);
+
     res.send({ data: mapProduct(product) });
   } catch (e) {
     res.send({ error: e.message || "Неизвестная ошибка" });

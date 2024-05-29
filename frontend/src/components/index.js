@@ -9,3 +9,4 @@ export * from "./container/Container";
 export * from "./catalog/Catalog";
 export * from "./paginations/paginations.jsx";
 export * from "./modal/Modal.jsx";
+export * from "./favourite-btn/Favourite-btn.jsx";

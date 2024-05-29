@@ -7,5 +7,6 @@ export default function (user) {
       .toISOString()
       .substring(0, 16)
       .replace("T", " "),
+    favourites: user.favourites,
   };
 }

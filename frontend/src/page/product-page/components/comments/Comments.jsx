@@ -18,16 +18,16 @@ export const Comments = ({ comments }) => {
 		dispatch(addCommentAsync(productId, content));
 		setNewComment("");
 	};
-	const isGuest = user?.roleId === ROLE.GUEST;
+
 	return (
 		<div className={styles.wrapper}>
-			{!isGuest && (
+			{user && (
 				<div className={styles.newComment}>
 					<textarea
 						className={styles.textarea}
 						name="comment"
 						value={newComment}
-						placeholder="Комментарий..."
+						placeholder="Новый отзыв..."
 						onChange={({ target }) => setNewComment(target.value)}
 					></textarea>
 					<div

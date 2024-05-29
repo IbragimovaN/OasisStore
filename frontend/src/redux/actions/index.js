@@ -26,3 +26,4 @@ export * from "./set-info-message";
 export * from "./set-filterPanelTypeList-action";
 export * from "./set-comments-current-products";
 export * from "./delete-comment";
+export * from "./set-favourites-action";

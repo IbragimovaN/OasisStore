@@ -8,7 +8,7 @@ import {
 	setIsLoading,
 } from "../../redux";
 import { request } from "../../utils.js/request";
-import { Container } from "../../components";
+import { Container, FavouriteBtn } from "../../components";
 import { Comments, FieldAddToBag, Property } from "./components";
 import { setRouteErrorAction } from "../../redux/actions/set-route-error";
 import styles from "./Product-page.module.css";
@@ -69,6 +69,7 @@ export const ProductPage = () => {
 					className={styles.image}
 				></img>
 				<div className={styles.coll}>
+					<FavouriteBtn id={params.productId} styleType="inPage" />
 					<h3 className={styles.title}>{currentProduct.title}</h3>
 
 					<Property propertyName="Артикул" value={currentProduct.id} />

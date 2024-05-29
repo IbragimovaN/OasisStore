@@ -20,8 +20,10 @@ import {
 	productsSelector,
 	searchPhraseSelector,
 	shouldSearchSelector,
+	userSelector,
 } from "../../redux/selectors";
 import styles from "./Catalog.module.css";
+import { getFavouritesAsync } from "../../redux/actions/async-actions/get-favourites-async";
 
 export const Catalog = () => {
 	const dispatch = useDispatch();
@@ -30,6 +32,7 @@ export const Catalog = () => {
 	const params = useParams();
 	const searchPhrase = useSelector(searchPhraseSelector);
 	const shouldSearch = useSelector(shouldSearchSelector);
+	const user = useSelector(userSelector);
 	const [page, setPage] = useState(1);
 
 	const navigate = useNavigate();
@@ -51,6 +54,7 @@ export const Catalog = () => {
 				dispatch(getProductsAsync(params.idCategory)),
 				dispatch(setCurrentCategoryAction(params?.idCategory)),
 				dispatch(setFilterPanelTypeList(params?.idCategory)),
+				user && dispatch(getFavouritesAsync(user.id)),
 			])
 				.then(() => {
 					dispatch(setIsLoading(false));

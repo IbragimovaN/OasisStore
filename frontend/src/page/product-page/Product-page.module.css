@@ -29,6 +29,8 @@
 
 .title {
 	font-size: 22px;
+	display: block;
+	max-width: 520px;
 }
 
 .coll {
@@ -37,6 +39,7 @@
 	gap: 20px;
 	padding-top: 25px;
 	max-width: 550px;
+	position: relative;
 }
 
 .back_btn {

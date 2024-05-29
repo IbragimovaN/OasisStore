@@ -8,4 +8,5 @@
 	justify-content: space-around;
 	position: fixed;
 	width: inherit;
+	z-index: 10;
 }

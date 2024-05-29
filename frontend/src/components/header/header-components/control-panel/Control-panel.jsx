@@ -33,6 +33,11 @@ export const ControlPanel = () => {
 							<div className={styles.icon_wrapper}>
 								<i className={`fa fa-sign-out`} aria-hidden="true"></i>
 							</div>
+							<Link to="/favourites-page">
+								<div className={styles.icon_wrapper}>
+									<i className={`fa fa-heart`} aria-hidden="true"></i>
+								</div>
+							</Link>
 						</div>
 					</>
 				) : (

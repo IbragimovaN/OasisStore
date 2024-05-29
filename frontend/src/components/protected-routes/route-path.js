@@ -12,6 +12,7 @@ import {
 import { CatalogWithAllProducts } from "../../page/catalog-with-all-products/CatalogWithAllProducts";
 import { CatalogWithProductsCategory } from "../../page/catalog-with-products-category/CatalogWithProductsCategory";
 import { ErrorPage } from "../../page/error-page/Error-page";
+import { FavouritesPage } from "../../page/favourites-page/Favourites-page";
 
 export const routesPath = [
 	{
@@ -45,6 +46,10 @@ export const routesPath = [
 	{
 		path: "/bag",
 		element: <Bag />,
+	},
+	{
+		path: "/favourites-page",
+		element: <FavouritesPage />,
 	},
 	{
 		path: "/adminPage",

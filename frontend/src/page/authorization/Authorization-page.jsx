@@ -17,6 +17,7 @@ export const Authorization = () => {
 	const dispatch = useDispatch();
 	const serverErrorForm = useSelector(errorServerFormSelector);
 	const user = useSelector(userSelector);
+
 	const {
 		register,
 		handleSubmit,

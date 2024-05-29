@@ -11,6 +11,7 @@ export const loginAsync = (email, password) => (dispatch) => {
 			}
 
 			dispatch(setUserAction(user));
+
 			sessionStorage.setItem("userData", JSON.stringify(user));
 			return user.roleId;
 		},

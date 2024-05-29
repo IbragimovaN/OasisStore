@@ -17,7 +17,6 @@ export const ProductCard = ({ product }) => {
 				}
 			>
 				<div className={styles.link_wrapper}>
-					{" "}
 					<img
 						className={styles.image}
 						src={product.imgUrl}

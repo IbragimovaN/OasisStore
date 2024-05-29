@@ -11,7 +11,9 @@ export const Comment = ({ content, publishedAt, author, id, productId }) => {
 		dispatch(deleteCommentAsync(productId, commentId));
 	};
 
-	const isAdminOrModerator = [ROLE.ADMIN, ROLE.MODERATOR].includes(user.roleId);
+	const isAdminOrModerator = [ROLE.ADMIN, ROLE.MODERATOR].includes(
+		user?.roleId,
+	);
 	return (
 		<div className={styles.comment}>
 			<div className={styles.comment_wrapper}>
