@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-	favouritesSelector,
-	setFavouritesAction,
-	userSelector,
-} from "../../redux";
+import { favouritesSelector, userSelector } from "../../redux";
 import styles from "./Favourite-btn.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { request } from "../../utils.js/request";
@@ -15,7 +11,7 @@ export const FavouriteBtn = ({ id }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		user && setIsChecked(favourites?.some((item) => item._id === id));
+		user && setIsChecked(favourites?.some((item) => item.id === id));
 	}, [user, favourites, id]);
 
 	if (!user) {

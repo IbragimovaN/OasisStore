@@ -1,10 +1,13 @@
 import { Link, useParams } from "react-router-dom";
-import { Button } from "../../../../components";
+import { Button, FavouriteBtn } from "../../../../components";
 import { useAddToBag } from "../../../../hooks";
 import styles from "./Product-card.module.css";
+import { useSelector } from "react-redux";
+import { favouritesSelector } from "../../../../redux";
 
 export const ProductCard = ({ product }) => {
 	const params = useParams();
+	const favourites = useSelector(favouritesSelector);
 	const { onClickAddToBag } = useAddToBag(product);
 
 	return (
@@ -17,6 +20,11 @@ export const ProductCard = ({ product }) => {
 				}
 			>
 				<div className={styles.link_wrapper}>
+					{favourites?.some((item) => item.id === product.id) && (
+						<div className={styles.icon_favourite}>
+							<i className={`fa fa-heart`} aria-hidden="true"></i>
+						</div>
+					)}
 					<img
 						className={styles.image}
 						src={product.imgUrl}

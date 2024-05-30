@@ -56,7 +56,7 @@ export const ProductPage = () => {
 	const onClickBack = () => {
 		navigate(-1);
 	};
-
+	console.log(params.productId);
 	return (
 		<Container>
 			<div className={styles.wrapper}>
@@ -69,7 +69,7 @@ export const ProductPage = () => {
 					className={styles.image}
 				></img>
 				<div className={styles.coll}>
-					<FavouriteBtn id={params.productId} styleType="inPage" />
+					<FavouriteBtn id={params.productId} />
 					<h3 className={styles.title}>{currentProduct.title}</h3>
 
 					<Property propertyName="Артикул" value={currentProduct.id} />

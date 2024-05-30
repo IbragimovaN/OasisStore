@@ -50,6 +50,8 @@ export const routesPath = [
 	{
 		path: "/favourites-page",
 		element: <FavouritesPage />,
+		isAuth: true,
+		roles: [0, 1, 2],
 	},
 	{
 		path: "/adminPage",
